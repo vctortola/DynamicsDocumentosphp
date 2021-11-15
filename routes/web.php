@@ -17,4 +17,8 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::Get('/verArchivo/{idarchivo}',        [DgController::class, 'verArchivo']);
+Route::Get('/verArchivo/{idarchivo}', [DgController::class, 'verArchivo']);
+Route::Get('/verFoto/{idarchivo}',    [DgController::class, 'verFoto']);
+
+Route::Get('/fotos/verArchivo/{idarchivo}', [DgController::class, 'verArchivo']);
+Route::Get('/fotos/verFoto/{idarchivo}',    [DgController::class, 'verFoto']);
