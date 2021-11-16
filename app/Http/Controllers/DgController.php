@@ -37,8 +37,8 @@ class DgController extends Controller
           $idDecript = base64_decode($idarchivo);
 
           $retval = (new DBA\PKG_PeopleController())->Foto($idDecript);
-          
-          $nuevafoto = $this->resizeBase64andScaleWidth(base64_encode($retval[0]["FOTO"]),'image/jpg',180, 200);
+
+          $nuevafoto = $this->resizeBase64andScaleWidth(base64_encode($retval[0]["FOTO"]),'image/jpg',200,180);
 
           return Response::make(base64_decode($nuevafoto), 200, [
               'Content-Type' => "image/Jpeg",
