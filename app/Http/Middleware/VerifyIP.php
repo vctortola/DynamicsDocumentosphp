@@ -20,7 +20,7 @@ class VerifyIP
     {
 
         $IP = Request::ip();
-        
+        dd($IP);
         $permiso = (new MYSQL\PermisosController())->Permiso($IP);
         if($permiso > 0){
           return $next($request);
