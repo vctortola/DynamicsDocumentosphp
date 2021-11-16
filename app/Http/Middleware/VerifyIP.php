@@ -20,9 +20,9 @@ class VerifyIP
     {
 
         $IP = Request::ip();
-        dd($IP);
+
         $permiso = (new MYSQL\PermisosController())->Permiso($IP);
-        if($permiso > 0){
+        if($permiso > 0 || str_contains($IP, "10.0.3.")){
           return $next($request);
         }else{
           return response("No tiene permisos", 403);
