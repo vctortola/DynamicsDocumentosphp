@@ -2,6 +2,8 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\DgController;
+use App\Http\Controllers\PersonalController;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -25,4 +27,8 @@ Route::Get('/verFoto/{idarchivo}',    [DgController::class, 'verFoto']);
 
 Route::Get('/fotos/verArchivo/{idarchivo}', [DgController::class, 'verArchivo']);
 Route::Get('/fotos/verFoto/{idarchivo}',    [DgController::class, 'verFoto']);
+
+Route::Get('/Personal/obtenerSolicitudes',    [PersonalController::class, 'obtenerSolicitudes']);
+
+
 });
