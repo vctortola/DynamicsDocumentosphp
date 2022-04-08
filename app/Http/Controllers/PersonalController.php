@@ -24,13 +24,13 @@ class PersonalController extends Controller
           for($i = 0; $i < Count($retval); $i++){
             $ArchivoResponse = $this->apiDG->get('api/listado?usuario='. $retval[$i]["CORREO"], ['headers' => ['Content-type' => 'application/json', 'Token' => $this->token]]);
             $response = json_decode($ArchivoResponse->getBody(), true);
-            
+
             $retval[$i]["DATOS"] =  $response;
           }
 
           return response()->json($retval, 200);
         } catch (\Exception $e) {
-          return response()->json([], 200);
+          return response()->json($e->getMessage(), 200);
         }
     }
 
