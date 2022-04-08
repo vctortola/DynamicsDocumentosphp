@@ -28,7 +28,7 @@ Route::Get('/verFoto/{idarchivo}',    [DgController::class, 'verFoto']);
 Route::Get('/fotos/verArchivo/{idarchivo}', [DgController::class, 'verArchivo']);
 Route::Get('/fotos/verFoto/{idarchivo}',    [DgController::class, 'verFoto']);
 
-Route::Get('/Personal/obtenerSolicitudes',    [PersonalController::class, 'obtenerSolicitudes']);
+Route::Get('/fotos/Personal/obtenerSolicitudes',    [PersonalController::class, 'obtenerSolicitudes']);
 
 
 });
