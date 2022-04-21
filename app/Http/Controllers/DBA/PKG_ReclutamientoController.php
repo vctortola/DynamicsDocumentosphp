@@ -23,4 +23,22 @@ class PKG_ReclutamientoController extends Controller
         return $res["RETVAL"];
     }
 
+    public function Seguimiento_Reclutamiento($Solicitud, $Comentario, $Codpers, $Iddynamics)
+    {
+        $params = array(
+            array(
+              ["PSOLICITUD"   => $Solicitud,    "TIPODATO"  => "NUMBER",    "TIPO" => "IN"],
+              ["PCOMENTARIO"  => $Comentario,   "TIPODATO"  => "VARCHAR2",  "TIPO" => "IN"],
+              ["PCODPERS"     => $Codpers,      "TIPODATO"  => "VARCHAR2",  "TIPO" => "IN"],
+              ["PIDDYNAMICS"  => $Iddynamics,   "TIPODATO"  => "NUMBER",    "TIPO" => "IN"],
+              ["PSQLCODE"     => "",            "TIPODATO"  => "NUMBER",    "TIPO" => "OUT"]
+            )
+        );
+
+        $res = (new Db())->CursorProcedureNormal("DBAFISICC.PKG_RECLUTAMIENTO.SEGUIMIENTO_RECLUTAMIENTO", $params);
+
+        return $res;
+    }
+
+
 }

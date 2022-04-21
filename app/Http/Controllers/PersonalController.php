@@ -7,6 +7,7 @@ use Response;
 use GuzzleHttp\Client;
 use Illuminate\Support\Facades\Crypt;
 use Illuminate\Http\Response as Response2;
+use Illuminate\Http\Request as Request2;
 
 class PersonalController extends Controller
 {
@@ -30,8 +31,39 @@ class PersonalController extends Controller
 
           return response()->json($retval, 200);
         } catch (\Exception $e) {
+          
           return response()->json($e->getMessage(), 200);
         }
     }
+
+    public function seguimientoSolicitud(Request2 $request){
+
+      $solicitud = $request->Solicitud;
+      $codpers   = $request->Codpers;
+      $iddynamics = $request->Iddynamics;
+      $Respuesta = ["Exito" => "", "Error" => ""];
+      try {
+          $respuesta = (new DBA\PKG_ReclutamientoController())->Seguimiento_Reclutamiento($solicitud, "Persona contratada " . $iddynamics, $codpers, $iddynamics);
+
+          if (isset($respuesta["ERROR"])){
+            $Respuesta["Error"] = $respuesta["ERROR"];
+            return $Respuesta;
+          }else{
+            if($respuesta["PSQLCODE"] == "0"){
+              $Respuesta["Exito"] = "Seguimiento dado exitosamente";
+              return $Respuesta;
+            }else {
+              $Respuesta["Error"] = "Ocurrió un error al darle seguimiento Ref. ". $respuesta["PSQLCODE"];
+              return $Respuesta;
+            }
+          }
+
+      } catch (\Exception $e) {
+          $Respuesta["Error"] = "Ocurrió un error al darle seguimiento Ref. " . $e->getMessage();
+          return $Respuesta;
+      }
+
+    }
+
 
 }

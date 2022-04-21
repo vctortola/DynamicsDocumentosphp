@@ -22,13 +22,12 @@ Route::get('/', function () {
 
 
 Route::group(['middleware' => ['VerifyIP']], function () {
-Route::Get('/verArchivo/{idarchivo}', [DgController::class, 'verArchivo']);
-Route::Get('/verFoto/{idarchivo}',    [DgController::class, 'verFoto']);
+  Route::Get('/verArchivo/{idarchivo}', [DgController::class, 'verArchivo']);
+  Route::Get('/verFoto/{idarchivo}',    [DgController::class, 'verFoto']);
 
-Route::Get('/fotos/verArchivo/{idarchivo}', [DgController::class, 'verArchivo']);
-Route::Get('/fotos/verFoto/{idarchivo}',    [DgController::class, 'verFoto']);
+  Route::Get('/fotos/verArchivo/{idarchivo}', [DgController::class, 'verArchivo']);
+  Route::Get('/fotos/verFoto/{idarchivo}',    [DgController::class, 'verFoto']);
 
-Route::Get('/fotos/Personal/obtenerSolicitudes',    [PersonalController::class, 'obtenerSolicitudes']);
-
-
+  Route::Get('/fotos/Personal/obtenerSolicitudes',    [PersonalController::class, 'obtenerSolicitudes']);
+  Route::Post('/fotos/Personal/seguimientoSolicitud',    [PersonalController::class, 'seguimientoSolicitud']);
 });
