@@ -8,6 +8,8 @@ use GuzzleHttp\Client;
 use Illuminate\Support\Facades\Crypt;
 use Illuminate\Http\Response as Response2;
 use Illuminate\Http\Request as Request2;
+use DateTime;
+use DateTimeZone;
 
 class PersonalController extends Controller
 {
@@ -31,7 +33,7 @@ class PersonalController extends Controller
 
           return response()->json($retval, 200);
         } catch (\Exception $e) {
-          
+
           return response()->json($e->getMessage(), 200);
         }
     }
@@ -66,4 +68,18 @@ class PersonalController extends Controller
     }
 
 
+    public function People(Request2 $request){
+
+      $sfecha = $request->FechaNac;
+
+      $fechanac = new DateTime($sfecha);
+      $fechanac = $fechanac->setTimezone(new DateTimeZone('America/Guatemala'));
+      $fechanacdate = $fechanac->format('Y-m-d');
+
+      $retval = (new DBA\PKG_PersonalController())->Carga_Administrativo(null, $request->Nombre1, $request->Nombre2, $request->Apellido1, $request->Apellido2, $request->DeCasada, null, null, $request->Cedula, $request->Nacionalidad, $request->Pais, $request->Depto_ID, $request->Muni_ID, $request->DPI, $request->Pasaporte, $request->Pais_PAS, $fechanacdate, $request->Sexo, $request->EstadoCivil, $request->Codigo, $request->Puesto, $request->Departamento, null, null);
+
+      $correlativo = $retval["PCORRELATIVO"];
+      
+      return $correlativo;
+    }
 }

@@ -30,4 +30,6 @@ Route::group(['middleware' => ['VerifyIP']], function () {
 
   Route::Get('/fotos/Personal/obtenerSolicitudes',    [PersonalController::class, 'obtenerSolicitudes']);
   Route::Post('/fotos/Personal/seguimientoSolicitud',    [PersonalController::class, 'seguimientoSolicitud']);
+
+  Route::Post('/fotos/api/DynamicsUG/People',    [PersonalController::class, 'People']);
 });
